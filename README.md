@@ -54,10 +54,10 @@ rm -rf Ag-Ultimate-Kit
 git clone https://github.com/smhaydn/Ag-Ultimate-Kit.git
 
 # 2. Extract the .agent folder into your current project
-Copy-Item -Path "Ag-Ultimate-Kit\.agent" -Destination ".\.agent" -Recurse -Force
+Move-Item -Path "Ag-Ultimate-Kit\.agent" -Destination ".\.agent" -Force
 
-# 3. Clean up the cloned repository
-Remove-Item -Path "Ag-Ultimate-Kit" -Recurse -Force
+# 3. Clean up the cloned repository (using cmd for robust removal of read-only git files)
+cmd /c rmdir /s /q Ag-Ultimate-Kit
 ```
 
 ---
@@ -66,11 +66,11 @@ Remove-Item -Path "Ag-Ultimate-Kit" -Recurse -Force
 
 If you prefer to integrate manually:
 
-1. Download or clone this repository.
-2. Locate the `.agent` folder.
-3. Drag and drop the `.agent` folder into the root directory of your own project.
-4. Open your project in your AI IDE (Antigravity, Cursor, etc.).
-5. The AI will automatically detect the `.agent/rules/General.md` and `.agent/workflows` and instantly adopt the new behavior framework.
+1.  Download or clone this repository.
+2.  Locate the `.agent` folder.
+3.  Drag and drop the `.agent` folder into the root directory of your own project.
+4.  Open your project in your AI IDE (Antigravity, Cursor, etc.).
+5.  The AI will automatically detect the `.agent/rules/General.md` and `.agent/workflows` and instantly adopt the new behavior framework.
 
 ---
 
@@ -86,4 +86,4 @@ Once the `.agent` folder is in your project, you don't need to do anything compl
 
 ### 🛡️ Architecture & Credits
 
-Built and refined for the **Antigravity Framework**, aggregating best-in-class behaviors to push the limits of what LLM-powered coding assistants can achieve in 2025.
+Built and refined for the **Antigravity Framework**, aggregating best-in-class behaviors to push the limits of what LLM-powered coding assistants can achieve in 2026.
