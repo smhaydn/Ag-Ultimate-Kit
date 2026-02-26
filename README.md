@@ -32,7 +32,7 @@ If you are using an AI Agent IDE (like Antigravity, Cursor, or Claude), integrat
 
 ## ⚡ Quick Start
 
-To empower your next project with this mastermind AI, simply copy the `.agent` folder into the root of your target project.
+To empower your next project with this mastermind AI, open your terminal **inside your target project's root folder** and run the following commands:
 
 ### 🍎 Mac / Linux (Bash)
 
@@ -40,8 +40,11 @@ To empower your next project with this mastermind AI, simply copy the `.agent` f
 # 1. Clone the master kit
 git clone https://github.com/smhaydn/Ag-Ultimate-Kit.git
 
-# 2. Copy the .agent folder to your target project folder
-cp -r Ag-Ultimate-Kit/.agent /path/to/your/target/project/
+# 2. Extract the .agent folder into your current project
+cp -r Ag-Ultimate-Kit/.agent ./
+
+# 3. Clean up the cloned repository
+rm -rf Ag-Ultimate-Kit
 ```
 
 ### 🪟 Windows (PowerShell)
@@ -50,8 +53,11 @@ cp -r Ag-Ultimate-Kit/.agent /path/to/your/target/project/
 # 1. Clone the master kit
 git clone https://github.com/smhaydn/Ag-Ultimate-Kit.git
 
-# 2. Copy the .agent folder to your target project folder
-Copy-Item -Path "Ag-Ultimate-Kit\.agent" -Destination "C:\path\to\your\target\project\.agent" -Recurse -Force
+# 2. Extract the .agent folder into your current project
+Copy-Item -Path "Ag-Ultimate-Kit\.agent" -Destination ".\.agent" -Recurse -Force
+
+# 3. Clean up the cloned repository
+Remove-Item -Path "Ag-Ultimate-Kit" -Recurse -Force
 ```
 
 ---
