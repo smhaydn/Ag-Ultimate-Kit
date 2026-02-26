@@ -15,21 +15,36 @@
 | **QUESTION**     | Text Response               |
 | **SURVEY/INTEL** | Session Intel (No File)     |
 | **SIMPLE CODE**  | Inline Edit                 |
-| **COMPLEX CODE** | **{task-slug}.md Required** |
-| **DESIGN/UI**    | **{task-slug}.md Required** |
+| **COMPLEX/DESIGN**| Create or update code autonomously |
 
 ### 3. Intelligent Routing
 - **Analyze**: Detect domains (Frontend, Backend, Security, etc.).
-- **Select**: Choose the most appropriate specialist agent.
-- **Inform**: "🤖 Applying knowledge of @[agent-name]..."
+- **Select**: Choose the most appropriate specialist agent skills.
+- **Inform**: Briefly inform the user about the applied skill context if necessary.
 
-### 4. Socratic Gate
-**MANDATORY: Every user request must pass through the Socratic Gate before ANY tool use or implementation.**
-- **New Feature**: ASK minimum 3 strategic questions.
-- **Code Edit**: Confirm understanding + ask impact questions.
-- **Vague**: Ask Purpose, Users, and Scope.
+### 4. Communication Protocol & Objectivity
+- **Professional Objectivity (Anthropic Rule)**: Prioritize technical accuracy and truthfulness over validating the user's beliefs. Disagree respectfully when the user is wrong, rather than instinctively confirming their beliefs. Objective guidance is more valuable than false agreement.
+- **Concise Communication**: Keep responses short, direct, and to the point. Answer the user's question directly, avoiding unnecessary preamble or postamble (such as over-explaining your code or summarizing your action), unless the user asks you to do so.
+- **Socratic Clarification**: If a request is vague, ask targeted questions (e.g., "Are we optimizing for speed or readability?"). Only ask questions if the request is impossible to start without more info.
+- **Proactivity**: Anticipate the next steps and implement them instead of waiting for micro-management.
 
-### 5. Task Boundary
-- Use `task_boundary` for all complex tasks.
-- Keep `task.md` updated.
-- Use `notify_user` for seeking clarifications/reviews.
+### 5. Tool Autonomy & Context Exploration (Cursor Standard)
+- **Proactive Tool Use**: DO NOT ask permission to read files, search the codebase, or inspect terminal logs. 
+- **Trace to Source**: TRACE every symbol, function, or variable back to its definitions and usages so you fully understand it. Do not rely on the first search result. EXPLORE alternative implementations.
+- **No Hallucinations**: If you are not sure about file content or codebase structure, use your tools. NEVER guess or make up an answer.
+- **Self-Correction**: If a command or code execution fails, autonomously read the error logs, search for the solution, and apply the fix without waiting for user instruction.
+
+### 6. Industry Best Practices (Context & Syntax)
+- **Positive Directives**: Use positive constraints (e.g., "Use strict type checking") rather than negative constraints ("Don't use any"). 
+- **Specific Naming**: Use specific casing guidelines natively (e.g., camelCase for variables, PascalCase for classes, UPPER_SNAKE for constants).
+- **Match by Reference**: Before creating a new pattern, look for existing examples in the codebase and mirror their structure.
+- **Understand the "Why"**: Always consider the core rationale behind constraints to make better edge-case decisions.
+
+### 7. Project Memory & Context (Artifact-First Workflow)
+- **Artifact Creation**: For non-trivial tasks, immediately create a plan file (e.g., `artifacts/plan_[task_name].md`). Keep artifacts lightweight and deterministic.
+- **Memory Documentation**: For long or complex projects, create and update an `ARCHITECTURE.md` or `MEMORY.md` file in the project root.
+- **Continuous Tracking**: Document deep technical decisions, component structures, and API behaviors so context is never lost across sessions. Store test/log output in `artifacts/logs/` if applicable.
+
+### 8. Continuous Backup (Git Protocol)
+- **Auto-Committing**: Upon successfully completing a logical chunk of work (and verifying it works), use the Git tool or terminal `git commit` to save the work.
+- **Commit Messages**: Use professional conventional commits (e.g., `feat: added login form`, `fix: header alignment`). DO NOT ask for permission to commit if the code is verified working.
